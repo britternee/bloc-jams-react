@@ -12,7 +12,8 @@ class Album extends Component {
         this.state = {
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            isHovering: false
         };
 
         this.audioElement = document.createElement('audio');
@@ -43,7 +44,6 @@ class Album extends Component {
                 this.play();
             }
         }
-    
 
     render () {
         return (
@@ -59,9 +59,9 @@ class Album extends Component {
                 <table id="song-list">
                     <thead id="song-list-header">
                         <tr id="song-list-colnames">
-                           <th>Number</th>
-                           <th>Title</th>
-                           <th>Duration</th>
+                            <th>Number</th>
+                            <th>Title</th>
+                            <th>Duration</th>
                         </tr>
                     </thead>
                     <colgroup>
@@ -71,8 +71,12 @@ class Album extends Component {
                     </colgroup>
                     <tbody>
                         {this.state.album.songs.map( (song, index ) =>
-                        <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                            <td id="song-number">{index + 1}</td>
+                        <tr className="song" key={index}
+                            onClick={() => this.handleSongClick(song)}
+                            onMouseLeave={() => this.setState({ isHovering: false })}
+                            onMouseEnter={() => this.setState({ isHovering: index + 1})}>
+                            { (this.state.currentSong.title === song.title) ? this.state.isPlaying ? <td className="ion-md-pause"></td> : <td className="ion-md-play"></td>
+                            : (this.state.isHovering === index + 1) ? <td className="ion-md-play"></td> : <td className="song-number">{index+1}</td>}
                             <td id="song-title">{song.title}</td>
                             <td id="song-duration">{song.duration}</td>
                         </tr>
