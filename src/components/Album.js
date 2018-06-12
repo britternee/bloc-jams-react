@@ -142,7 +142,7 @@ class Album extends Component {
                             { (this.state.currentSong.title === song.title) ? this.state.isPlaying ? <td className="ion-md-pause"></td> : <td className="ion-md-play"></td>
                             : (this.state.isHovering === index + 1) ? <td className="ion-md-play"></td> : <td className="song-number">{index+1}</td>}
                             <td id="song-title">{song.title}</td>
-                            <td id="song-duration">{song.duration}</td>
+                            <td id="song-duration">{this.formatTime(song.duration)}</td>
                         </tr>
                         )
                         }
