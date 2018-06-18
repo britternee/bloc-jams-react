@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
 
+const tableStyle = {
+    margin: "auto"
+}
+
 class Album extends Component {
     constructor(props) {
         super(props);
@@ -120,11 +124,11 @@ class Album extends Component {
                         <div id="release-info">{this.state.album.releaseInfo}</div>
                     </div>
                 </section>
-                <table id="song-list">
+                <table id="song-list" className="mdl-data-table mdl-js-data-table" style={tableStyle}>
                     <thead id="song-list-header">
                         <tr id="song-list-colnames">
                             <th>Number</th>
-                            <th>Title</th>
+                            <th className="mdl-data-table__cell--non-numeric">Title</th>
                             <th>Duration</th>
                         </tr>
                     </thead>
@@ -141,7 +145,7 @@ class Album extends Component {
                             onMouseEnter={() => this.setState({ isHovering: index + 1})}>
                             { (this.state.currentSong.title === song.title) ? this.state.isPlaying ? <td className="ion-md-pause"></td> : <td className="ion-md-play"></td>
                             : (this.state.isHovering === index + 1) ? <td className="ion-md-play"></td> : <td className="song-number">{index+1}</td>}
-                            <td id="song-title">{song.title}</td>
+                            <td id="song-title" className="mdl-data-table__cell--non-numeric">{song.title}</td>
                             <td id="song-duration">{this.formatTime(song.duration)}</td>
                         </tr>
                         )

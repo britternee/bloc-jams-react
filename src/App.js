@@ -5,16 +5,21 @@ import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
 
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header>
-          <nav>
-            <Link to='/'>Landing</Link>
-            <Link to='/library'>Library</Link>
+      <div className="App" className="mdl-layout mdl-js-layout">
+        <header className="mdl-layout__header">
+        <div className="mdl-layout-icon"></div>
+        <div className="mdl-layout__header-row">
+          <span className="mdl-layout__title">Bloc Jams</span>
+          <div className="mdl-layout-spacer"></div>
+          <nav className="mdl-navigation">
+            <Link className="mdl-navigation__link" to='/'>Landing</Link>
+            <Link className="mdl-navigation__link" to='/library'>Library</Link>
             </nav>
-          <h1>Bloc Jams</h1>
+            </div>
         </header>
         <main>
           <Route exact path="/" component={Landing} />
